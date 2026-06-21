@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>再访 · 百家乐专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #faf8f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      color: #2c2b28;
+      line-height: 1.7;
+      padding: 2.5rem 1.2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 720px;
+      width: 100%;
+    }
+
+    /* 首页横幅 —— 极简留白 + 杂志式标题 */
+    .hero {
+      margin-top: 0.8rem;
+      margin-bottom: 2.8rem;
+      padding: 2.8rem 1.2rem 2rem;
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.02);
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+
+    .hero:hover {
+      box-shadow: 0 20px 32px rgba(0, 0, 0, 0.04);
+    }
+
+    .hero__tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #a09b94;
+      border: 1px solid #e5e0da;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1.6rem;
+      font-weight: 400;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 350;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #1f1e1b;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 span {
+      font-weight: 500;
+      background: linear-gradient(145deg, #b8a48a 0%, #9b8a76 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #5d5851;
+      max-width: 520px;
+      margin: 0 auto;
+      font-weight: 350;
+      letter-spacing: 0.01em;
+    }
+
+    /* 背景说明 —— 窄栏 + 留白 */
+    .background-note {
+      margin: 2.4rem 0 3rem;
+      padding: 0 0.4rem;
+    }
+
+    .background-note h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      border-left: 3px solid #cbb7a2;
+      padding-left: 1.2rem;
+      margin-bottom: 1.4rem;
+      color: #2f2c27;
+    }
+
+    .background-note p {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      color: #3e3b36;
+    }
+
+    .background-note p a {
+      color: #7f6e5c;
+      text-decoration: none;
+      border-bottom: 1px solid #d6cdc1;
+      transition: border-color 0.15s, color 0.15s;
+      font-weight: 400;
+    }
+
+    .background-note p a:hover {
+      color: #4a3f34;
+      border-bottom-color: #9b8a76;
+    }
+
+    /* 三段自然介绍 —— 卡片式，每段独立呼吸 */
+    .essay-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin: 2.6rem 0 2.8rem;
+    }
+
+    .essay-card {
+      background: #ffffff;
+      padding: 1.8rem 2rem 2rem;
+      border-radius: 28px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.01);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+    }
+
+    .essay-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+    }
+
+    .essay-card .number {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: #b0a79b;
+      background: #f3efea;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-card h3 {
+      font-size: 1.3rem;
+      font-weight: 420;
+      margin-bottom: 0.9rem;
+      color: #2c2924;
+      letter-spacing: -0.01em;
+    }
+
+    .essay-card p {
+      font-size: 0.98rem;
+      color: #44413b;
+      margin-bottom: 0.8rem;
+    }
+
+    .essay-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .essay-card .muted-link {
+      color: #7f6e5c;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd5ca;
+      transition: border-color 0.1s;
+    }
+
+    .essay-card .muted-link:hover {
+      border-bottom-color: #7f6e5c;
+    }
+
+    /* 页尾访问提示 —— 干净，不喧宾夺主 */
+    .footer-note {
+      margin-top: 3rem;
+      padding: 1.8rem 0 2.2rem;
+      border-top: 1px solid #e9e3db;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #5f5a53;
+    }
+
+    .footer-note p {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-note a {
+      color: #6b5f4f;
+      text-decoration: none;
+      border-bottom: 1px solid #cfc5b7;
+      transition: border 0.15s;
+      font-weight: 420;
+    }
+
+    .footer-note a:hover {
+      border-bottom-color: #4a3f34;
+      color: #3b332b;
+    }
+
+    .footer-note .small-print {
+      font-size: 0.8rem;
+      color: #a39c93;
+      margin-top: 1rem;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 500px) {
+      body {
+        padding: 1.5rem 0.8rem;
+      }
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+      .hero {
+        padding: 2rem 0.8rem 1.6rem;
+      }
+      .essay-card {
+        padding: 1.5rem 1.2rem;
+      }
+      .background-note h2 {
+        font-size: 1.3rem;
+        padding-left: 0.8rem;
+      }
+    }
+
+    @media (min-width: 800px) {
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+    }
+
+    /* 极简留白辅助 */
+    hr {
+      border: none;
+      height: 1px;
+      background: #ece7e0;
+      margin: 1rem 0;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 横幅 -->
+  <header class="hero">
+    <div class="hero__tag">杂志专题 · 再访</div>
+    <h1>又一次翻开<span>百家乐</span></h1>
+    <p>不是第一次遇见，却是更愿意停留的一次。<br>收藏一页，慢慢读。</p>
+  </header>
+
+  <!-- 背景说明 -->
+  <section class="background-note">
+    <h2>为什么值得再次回来</h2>
+    <p>许多游戏、许多选择，匆匆一瞥便翻过去了。但有些页面、有些体验，会在某个安静的下午被重新记起。你已经熟悉 <a href="https://home--baccarat.com">百家乐</a> 这个名字，这次回来，不是为了快速浏览，而是为了重新感受它沉淀下来的节奏与质感。收藏，是另一种信任的表达。</p>
+    <p>它不喧哗，不催促。界面干净，信息克制，像一本放在桌角的杂志，等你随手翻开。从第一次访问到再次回来，中间隔着的是你对内容安静的需要。而它，一直在这里。</p>
+  </section>
+
+  <!-- 三段自然介绍 (杂志式段落) -->
+  <div class="essay-grid">
+
+    <article class="essay-card">
+      <span class="number">01</span>
+      <h3>熟悉的节奏，不同的阅读</h3>
+      <p>重新打开一个页面，最怕的是陌生感。但 <a href="https://home--baccarat.com" class="muted-link">百家乐</a> 从第一次到第无数次，都保持着那种一致的、低调的从容。没有突然弹出的干扰，没有铺满的广告，每段文字都像老朋友写来的信——你记得它的语调，却每次都能发现新的留白。</p>
+      <p>收藏，有时候不是为了“以后再看”，而是为了保留一个可以随时返回的安静角落。</p>
+    </article>
+
+    <article class="essay-card">
+      <span class="number">02</span>
+      <h3>持续关注，是因为不被打扰</h3>
+      <p>在信息过载的时代，一个页面能让你持续留意，靠的不是推送，而是克制。<a href="https://home--baccarat.com" class="muted-link">百家乐</a> 的底色是温和的，内容组织像一本专题杂志：有层次，有呼吸，每一段都有位置。你不需要特别安排时间，只需要在想起的时候，点开收藏夹，它就在那里，不增不减。</p>
+      <p>持续关注，其实是一种默契——你知道它不会变味，它也知道你会再回来。</p>
+    </article>
+
+    <article class="essay-card">
+      <span class="number">03</span>
+      <h3>页尾的提示，不是结束</h3>
+      <p>很多页面到最后只剩一个孤零零的版权声明，但这里不同。页尾的访问提示更像一句温柔的“下次见”。它不强求你把所有内容一次读完，而是留一个入口，让阅读可以随时暂停，也随时继续。就像一本杂志的页码，告诉你：这一期翻完了，但下一期已经在路上。</p>
+      <p>所以当你再次看到 <a href="https://home--baccarat.com" class="muted-link">百家乐</a> 这个链接时，它不只是一个网址，更是一个你已经熟悉的坐标。</p>
+    </article>
+
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <footer class="footer-note">
+    <p>如果你愿意，可以把这一页放进收藏夹。<br>
+    下一次想找一个安静、干净的地方时，<br>
+    不妨再打开 <a href="https://home--baccarat.com">百家乐</a> —— 它一直用同样的方式等着你。</p>
+    <p class="small-print">杂志式专题 · 再访与收藏 · 第 2a38 期</p>
+  </footer>
+</div>
+</body>
+</html>
