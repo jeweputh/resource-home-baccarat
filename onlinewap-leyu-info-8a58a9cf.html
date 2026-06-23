@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>乐鱼 · 内容灵感与生活交汇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f8f7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.2rem 1rem 3rem;
+            line-height: 1.6;
+            color: #1b2f35;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 主视觉区域 — 卡片式hero */
+        .hero-card {
+            background: linear-gradient(145deg, #e1f0ed 0%, #cde4df 100%);
+            border-radius: 2.4rem;
+            padding: 2.5rem 2rem 2.8rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 12px 28px rgba(0, 40, 35, 0.08);
+            border: 1px solid rgba(110, 170, 155, 0.25);
+            transition: box-shadow 0.25s ease;
+        }
+
+        .hero-card:hover {
+            box-shadow: 0 16px 36px rgba(0, 70, 60, 0.10);
+        }
+
+        .hero-card h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b3c3f;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-card h1 small {
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #2d645b;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 0.1rem 0.7rem;
+            border-radius: 40px;
+            margin-left: 0.6rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: #1d5450;
+            margin: 0.75rem 0 1.4rem;
+            border-left: 4px solid #36877a;
+            padding-left: 1.1rem;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 0 12px 12px 0;
+            display: inline-block;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            max-width: 650px;
+            color: #1f4441;
+        }
+
+        /* 网格卡片区 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+            margin-bottom: 2.6rem;
+        }
+
+        @media (max-width: 680px) {
+            .grid-cards {
+                grid-template-columns: 1fr;
+                gap: 1.3rem;
+            }
+            .hero-card h1 {
+                font-size: 1.9rem;
+            }
+            .hero-card {
+                padding: 1.8rem 1.2rem 2rem;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 1.8rem;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 14px rgba(0, 35, 30, 0.04);
+            border: 1px solid #d4e7e1;
+            transition: transform 0.18s ease, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(20, 80, 70, 0.08);
+            border-color: #9fcbc1;
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.1rem;
+            display: block;
+            color: #2b7a6d;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0.5rem 0 0.4rem;
+            color: #0d3f3a;
+        }
+
+        .card p {
+            color: #2d4f4b;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .card .extra-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #3e6f66;
+            border-top: 1px dashed #b8d3cb;
+            padding-top: 0.8rem;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem 0.7rem;
+            margin: 0.6rem 0 0.2rem;
+        }
+
+        .tag {
+            background: #dceee8;
+            color: #0f4d44;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            letter-spacing: 0.02em;
+            font-weight: 500;
+        }
+
+        /* 自然链接段落区 — 卡片式融合 */
+        .link-paragraph-card {
+            background: #ffffff;
+            border-radius: 1.8rem;
+            padding: 2rem 1.8rem;
+            margin: 1.2rem 0 2rem;
+            box-shadow: 0 4px 14px rgba(0, 35, 30, 0.04);
+            border: 1px solid #cde0d9;
+        }
+
+        .link-paragraph-card p {
+            margin-bottom: 1rem;
+            color: #1f3f3b;
+        }
+
+        .link-paragraph-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .inline-link {
+            color: #0b6b5c;
+            text-decoration: none;
+            font-weight: 500;
+            padding-bottom: 0.08rem;
+            border-bottom: 1.5px solid #9bcbc1;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        .inline-link:hover {
+            color: #003b32;
+            border-bottom-color: #004e42;
+        }
+
+        .faq-mini {
+            background: #eaf6f2;
+            border-radius: 1.4rem;
+            padding: 1.4rem 1.5rem;
+            margin: 1.8rem 0 1.4rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 600;
+            color: #154943;
+            cursor: pointer;
+            padding: 0.4rem 0;
+            font-size: 0.95rem;
+        }
+
+        .faq-mini details p {
+            margin-left: 0.9rem;
+            color: #295c53;
+            font-size: 0.9rem;
+            padding: 0.3rem 0 0.5rem;
+        }
+
+        .footnote {
+            margin-top: 2.2rem;
+            padding: 0.8rem 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #48766c;
+            border-top: 1px solid #c5dbd3;
+        }
+
+        .footnote a {
+            color: #0c5f51;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #b1cfc5;
+        }
+
+        .footnote a:hover {
+            color: #01332b;
+            text-decoration-color: #01332b;
+        }
+
+        .site-credit {
+            font-size: 0.75rem;
+            color: #5c857b;
+            margin-top: 0.5rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #cfdfd9;
+            margin: 1.6rem 0 0.8rem;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            margin: 0.3rem 0 0.6rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 主视觉 卡片 -->
+    <div class="hero-card">
+        <h1>乐鱼<small>· 灵感边角</small></h1>
+        <div class="hero-tagline">从日常内容里钓出有趣的一口</div>
+        <p class="hero-desc">
+            不管你是偶然路过，还是想寻一处轻松的阅读角落，这里整理了一些关于内容、创作和兴趣的小卡片。
+            它们未必宏大，但希望带给你一点新鲜的视角。
+        </p>
+    </div>
+
+    <!-- 网格卡片：用途 / 人群 / 场景等 -->
+    <div class="grid-cards">
+        <!-- 卡 1 -->
+        <div class="card">
+            <span class="card-icon">🎣</span>
+            <h3>内容便签</h3>
+            <p>把零碎想法、句子、灵感收进卡片，像翻一本随手集。不必追求完整，先留住那些闪过的片段。</p>
+            <div class="tag-group">
+                <span class="tag">阅读</span>
+                <span class="tag">备忘</span>
+                <span class="tag">轻整理</span>
+            </div>
+            <div class="extra-note">适合用来记录读书笔记或播客金句。</div>
+        </div>
+        <!-- 卡 2 -->
+        <div class="card">
+            <span class="card-icon">🧩</span>
+            <h3>兴趣拼图</h3>
+            <p>每个人都有自己的「兴趣带」—— 美食、户外、影音、手工……把不同爱好串联起来，常常能发现新的连接点。</p>
+            <div class="badge-list">
+                <span class="tag">播客</span>
+                <span class="tag">手作</span>
+                <span class="tag">城市散步</span>
+            </div>
+        </div>
+        <!-- 卡 3 -->
+        <div class="card">
+            <span class="card-icon">🧑‍🤝‍🧑</span>
+            <h3>适合这样的你</h3>
+            <p>喜欢浏览生活类内容，偶尔写写随笔，或者只是想在信息流里找一个缓口气的地方。不需要很多工具，一个页面就够。</p>
+            <div class="extra-note">不赶时间，不卷收藏量。</div>
+        </div>
+        <!-- 卡 4 -->
+        <div class="card">
+            <span class="card-icon">☕</span>
+            <h3>日常场景</h3>
+            <p>午休刷手机、通勤路上、睡前放空——在这些零碎的缝隙里，点开一篇短文或几张卡片，刚刚好。</p>
+            <div class="tag-group">
+                <span class="tag">碎片时间</span>
+                <span class="tag">轻阅读</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 (包含严格a标签「乐鱼」) -->
+    <div class="link-paragraph-card">
+        <p>
+            如果你对内容聚合和兴趣卡片这种方式感兴趣，可以试试在<a href="https://onlinewap-leyu.com" class="inline-link">乐鱼</a>里找到更多类似的主题。
+            它不追求算法的猜你喜欢，更接近一种手工挑选的质感——每一块内容都像是有人帮你先翻过一遍。
+        </p>
+        <p>
+            除了上面提到的场景，有时候我也会用它来存一些食谱小贴士、展览预告和随手拍下的句子。
+            页面本身很轻，打开没什么负担。从某种角度看，<a href="https://onlinewap-leyu.com" class="inline-link">乐鱼</a>像是一个安静的纸篓，装着你舍不得删的碎片。
+        </p>
+        <p>
+            当然，每个人的使用习惯不一样。有人喜欢用它来整理工作灵感，有人只是作为浏览兴趣内容的一个入口。
+            不管怎样，那个藏在链接背后的<a href="https://onlinewap-leyu.com" class="inline-link">乐鱼</a>，始终保持着一种不急不慢的节奏。
+        </p>
+    </div>
+
+    <!-- 迷你 FAQ 摘要 + 提示 -->
+    <div class="faq-mini">
+        <details open>
+            <summary>❓ 乐鱼适合存放大段文章吗？</summary>
+            <p>更偏向短内容与卡片式记录。如果是长文，建议拆分或提取关键句，再放进来。</p>
+        </details>
+        <details>
+            <summary>💡 有什么使用小建议？</summary>
+            <p>可以定期整理一次卡片，把过期的内容归档或删除。保持卡片数量在30张以内，翻阅体验会更轻松。</p>
+        </details>
+        <details>
+            <summary>📱 移动端体验如何？</summary>
+            <p>页面按照手机优先设计，卡片在窄屏上会自动堆叠，按钮和链接间距都做了适配，单手操作没什么问题。</p>
+        </details>
+    </div>
+
+    <!-- 提示 / 补充说明 -->
+    <div style="background: #e2f0eb; border-radius: 1.2rem; padding: 1rem 1.4rem; margin: 1rem 0 0.8rem; border-left: 4px solid #36877a;">
+        <p style="color: #15403b; font-size: 0.95rem;">
+            📌 提示：内容灵感卡片可以随心情更换，不用一次填满。比起「整理完」，更重要的是「愿意翻开」。
+        </p>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footnote">
+        <span>来自生活角落 · </span>
+        <span style="margin:0 0.2rem;">偶尔用 <a href="https://onlinewap-leyu.com" style="text-decoration: underline; text-underline-offset: 3px; color:#0c5f51;">乐鱼</a> 记一点东西</span>
+        <div class="site-credit">— 没有算法，只有卡片 —</div>
+    </div>
+
+    <!-- 隐式种子（仅用于变化，不显示） -->
+    <!-- 700749e20bf639eb -->
+</div>
+</body>
+</html>
